@@ -9,7 +9,8 @@ class SearchBar extends Component {
 // line handler arrow function like on line 24 onChange, either way is fine
   onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.term);
+    // console.log(this.state.term);
+    this.props.onSubmit(this.state.term)
   }
 
   render() {
