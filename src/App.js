@@ -1,10 +1,12 @@
 import React from 'react';
+import SearchBar from './components/SearchBar'
+import './App.css'
 
 
 function App() {
   return (
-    <div className="App">
-main app component
+    <div className="ui container App-Wrapper">
+      <SearchBar />
     </div>
   );
 }
