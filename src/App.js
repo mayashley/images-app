@@ -6,7 +6,7 @@ import './App.css'
 
 
 class App extends Component {
-state = { images: [] };
+state = {images: [] };
 
 
  onSearchSubmit = async (term)  => {
@@ -14,7 +14,7 @@ state = { images: [] };
   const response = await Unsplash.get('/search/photos', {
     params: { query: term },
 });
-// console.log(response.data.results)
+console.log(response.data.results)
 this.setState({ images: response.data.results });
 };
 
@@ -23,7 +23,7 @@ this.setState({ images: response.data.results });
   return (
     <div className="ui container App-Wrapper">
       <SearchBar onSubmit={this.onSearchSubmit} />
-      Found: {this.state.images.data.results} images
+     {/* <h1> Found: {this.state.images.data.results} images</h1> */}
     </div>
   );
   }
