@@ -1,38 +1,27 @@
-import React, {Component} from 'react';
-import SearchBar from './components/SearchBar'
-import Unsplash from './api/Unsplash'
-import './App.css'
+import React from 'react';
+import unsplash from '../api/unsplash';
+import SearchBar from './SearchBar';
+import ImageList from './ImageList';
 
+class App extends React.Component {
+  state = { images: [] };
 
+  onSearchSubmit = async term => {
+    const response = await unsplash.get('/search/photos', {
+      params: { query: term }
+    });
 
-class App extends Component {
-state = {images: [] };
-
-
- onSearchSubmit = async (term)  => {
-  // console.log(term);
-  const response = await Unsplash.get('/search/photos', {
-    params: { query: term },
-});
-console.log(response.data.results)
-this.setState({ images: response.data.results });
-};
-
+    this.setState({ images: response.data.results });
+  };
 
   render() {
-  return (
-    <div className="ui container App-Wrapper">
-      <SearchBar onSubmit={this.onSearchSubmit} />
-     {/* <h1> Found: {this.state.images.data.results} images</h1> */}
-    </div>
-  );
+    return (
+      <div className="ui container" style={{ marginTop: '10px' }}>
+        <SearchBar onSubmit={this.onSearchSubmit} />
+        <ImageList images={this.state.images} />
+      </div>
+    );
   }
 }
 
 export default App;
-
-
-// props only go down from parent to child
-
-// we convert app to class function, pass down onsearchcubmit for search bar in it
-
